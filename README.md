@@ -41,6 +41,8 @@ View the final scoreboard and rankings for UCTF 2024 on [CTFTime](https://ctftim
 | Tart | Reverse | 000             | [Write-up](./tart/README.md) | [Sajjad Manafi](https://github.com/SajjadManafi) |
 | Look-up| PWN | 300             |  [Write-up](./lookup/README.md) | [TBD](TBD) |
 | Hidden Coordinates | Forensics                | 150             |  [Write-up](./hidden-coordinates/README.md) | [Sajjad Alibabaei](https://github.com/sajad-alibabaie) |
+| Catch Me If You Can! | Forensics                | 350             |  [Write-up](./catch-me-if-you-can/README.md) | [Ali Babaei](https://github.com/alibabaei4) |
+| Execution | Reverse | 300             |  [Write-up](./execution/README.md) | [TBD](TBD) |
 | Lost Voyage | Forensics | 150             | [Write-up](./lost-voyage/README.md) | [Sajjad Alibabaei](https://github.com/sajad-alibabaie) |
 | Rasa | Cryptography                | 400             | [Write-up](./rasa/README.md) | [Kourosh](TBD) |
 | Simple | Web | 150             | [Write-up](./simple/README.md) | [Sajjad Alibabaei](https://github.com/sajad-alibabaie) |
