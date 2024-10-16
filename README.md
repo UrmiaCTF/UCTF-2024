@@ -23,14 +23,14 @@ View the final scoreboard and rankings for UCTF 2024 on [CTFTime](https://ctftim
 |-----------------------|--------------------|-----------------|---------------------------------------------| ------------- |
 | Drag n Zip           | Reverse| 300             |  [Write-up](./drag-n-zip/README.md) | [Mahdi Farrokhzadeh](https://github.com/IrHidden) |
 | Flag Seller | Web | 300             |  [Write-up](./flag-seller/README.MD) | [Alireza Alijani](https://github.com/alirezaalj) |
-| VLAN Wars | Forensics                | 350             |  [Write-up](./vlan_wars/README.md) | [Hamidreza Babaei](TBD) |
+| VLAN Wars | Forensics                | 350             |  [Write-up](./vlan_wars/README.md) | [Hamidreza Babaei](https://github.com/HamidRezaBabaeii) |
 | Travel Guide |  Reverse | 350             |  [Write-up](./travelguide/README.md) | [Reza Sheykhlarmazari](TBD) |
 | The Road of Redemption | Forensics                | 250             |  [Write-up](./the-road-of-redemption/README.md) | [Sina Zokaei](https://github.com/sinazokaei) |
 | The Prophecy | Cryptography | 450             | [Write-up](./the-prophecy/README.md) | [Pooria Mokhtari](https://github.com/p0m0h3) |
 | Graphical Giggles          | Steganography | 350             |  [Write-up](./graphical-giggles/README.md) | [Ebrahim Shami](https://github.com/qfewzz) |
 | Keep Alive Bingo           | Web            | 200      | [Write-up](./keep-alive-bingo/README.md) | [Sajjad Manafi](https://github.com/SajjadManafi) |
 | Lucky Guess | Blockchain | 250             | [Write-up](./lucky-guess/README.md) | [Mohammad Amini](https://github.com/m-amini-sss) |
-| Paho Puzzle | Network | 250             | [Write-up](./paho-puzzle/README.md) | [Hamidreza Babaei](TBD) |
+| Paho Puzzle | Network | 250             | [Write-up](./paho-puzzle/README.md) | [Hamidreza Babaei](https://github.com/HamidRezaBabaeii) |
 | The Data Whisperer       | Web                | 250             | [Write-up](./the-data-whisperer/README.md) | [Sajjad Manafi](https://github.com/SajjadManafi) |
 | REVNG           | Reverse | 400             | [Write-up](./revng/README.md) | [Amir Mohammad Jahangirzad](https://github.com/reodus) |
 | Karaball           | Cryptography | 500             | [Write-up](./karaball/README.md) | [Kourosh](https://github.com/YoungMind1) |
