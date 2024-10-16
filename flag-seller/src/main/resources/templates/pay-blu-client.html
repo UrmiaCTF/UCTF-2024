@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Management</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e0f7fa;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            width: 80%;
+            text-align: center;
+        }
+
+        h2 {
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+            color: #007bff;
+            text-align: left;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 12px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        input[type="password"] {
+            width: calc(100% - 12px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        input[type="text"]:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .hide-show-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .hide-show-container input {
+            width: calc(100% - 40px);
+            padding-right: 30px;
+        }
+
+        .eye-icon, .copy-btn {
+            position: absolute;
+            right: 10px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 18px;
+        }
+
+        .mybtn {
+            width: 37px;
+            padding: 5px;
+        }
+        .copy-btn {
+            right: 40px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <h2>Client Management (Max=4)</h2>
+
+    <table>
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Client ID</th>
+            <th>Request Secret</th>
+            <th>Response Secret</th>
+            <th>Client URL</th>
+            <th>Balance</th>
+            <th>-</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Example Rows, these would be dynamically generated in a real application -->
+        <tr th:each="client,iterStat : ${clients}">
+            <td th:text="${iterStat.index+1}">1</td>
+            <td th:text="${client.getUniqueId()}">unique-id-123</td>
+            <td>
+                <div class="hide-show-container">
+                    <input type="password" id="requestSecret" th:id="${'requestSecret-'+iterStat.index}" th:value="${client.getRequestSecret()}" readonly>
+                    <button class="eye-icon mybtn"
+                            th:onclick="'toggleVisibility(\'requestSecret-'+${iterStat.index}+'\')'"
+                            onclick="toggleVisibility('requestSecret')">👁️</button>
+                    <button class="copy-btn mybtn"
+                            th:onclick="'copyToClipboard(\'requestSecret-'+${iterStat.index}+'\')'"
+                            onclick="copyToClipboard('requestSecret')">📋</button>
+                </div>
+            </td>
+            <td>
+                <div class="hide-show-container">
+                    <input type="password" id="responseSecret" th:id="${'responseSecret-'+iterStat.index}" th:value="${client.getResponseSecret()}" readonly>
+                    <button class="eye-icon mybtn"
+                            th:onclick="'toggleVisibility(\'responseSecret-'+${iterStat.index}+'\')'"
+                            onclick="toggleVisibility('responseSecret')">👁️</button>
+                    <button class="copy-btn mybtn"
+                            th:onclick="'copyToClipboard(\'responseSecret-'+${iterStat.index}+'\')'"
+                            onclick="copyToClipboard('responseSecret')">📋</button>
+                </div>
+            </td>
+            <td th:text="${client.getClientUrl()}">http://client1.com</td>
+            <td th:text="${client.getBalance()}">5000</td>
+            <td><a href="#" th:href="${'/blu-pay/client/delete?id='+client.getUniqueId()}" th:text="'delete'"></a></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <hr>
+    <form action="/blu-pay/client" th:object="${new_client}" method="POST">
+        <label for="clientUrl">Client URL:</label>
+        <input type="text" id="clientUrl" th:field="*{clientUrl}" name="clientUrl" required>
+
+        <button type="submit">Create Client</button>
+    </form>
+</div>
+
+<script>
+    function toggleVisibility(id) {
+        var input = document.getElementById(id);
+        var type = input.type === 'password' ? 'text' : 'password';
+        input.type = type;
+    }
+
+    function copyToClipboard(id) {
+        var input = document.getElementById(id);
+        input.select();
+        document.execCommand('copy');
+        alert('Copied to clipboard!');
+    }
+</script>
+</body>
+
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Service Integration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        code {
+            background: #eee;
+            padding: 2px 4px;
+            font-size: 1.1em;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section p {
+            line-height: 1.6;
+        }
+        .steps ol {
+            padding-left: 20px;
+        }
+        .steps li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Payment Service Integration Guide</h1>
+    <div class="section">
+        <h2>Step 1: Sign Up</h2>
+        <p>To use our payment service, you need to create an account. Please visit our <a href="/blu-pay/client" target="_blank">Client Manage</a> and fallow create new process.</p>
+    </div>
+    <div class="section">
+        <h2>Step 2: Create a Payment Client</h2>
+        <p>After signing up, create a payment client in your dashboard. During this process, you will need to provide your <strong>Client URL</strong>, where users will be redirected after a successful payment. Once the payment client is created, you will receive the following information:</p>
+        <ul>
+            <li><strong>Client ID</strong></li>
+            <li><strong>Request Secret</strong></li>
+            <li><strong>Response Secret</strong></li>
+        </ul>
+    </div>
+    <div class="section">
+        <h2>Step 3: Generate Payment Hash</h2>
+        <p>To initiate a payment, generate a hash using the following algorithm:</p>
+        <p><code>hash = SHA256(amount + "-" + orderId + "-" + clientId + "-" + requestSecret)</code></p>
+        <p>Redirect the user to the payment URL with the following parameters:</p>
+        <ul>
+            <li><strong>amount</strong>: The payment amount</li>
+            <li><strong>orderId</strong>: The unique string order ID</li>
+            <li><strong>clientId</strong>: The client Id</li>
+            <li><strong>hash</strong>: The generated hash</li>
+        </ul>
+        <h4>example: </h4>
+        <p>hash = SHA256(1000-2a8e26e7-1087-455e-a9c6-9590a2bbcf74-o30hWAwgEktRhgfwzXD7uW6BVt3y062j-secret)</p>
+        <p>https://blupay.uctf.ir/pay?amount=1000&orderId=100&clientId=o30hWAwgEktRhgfwzXD7uW6BVt3y062j&hash=68178a64276fe7f3568274ad4912b18a0e210199ab86087e1a04f0d447b292e6</p>
+    </div>
+    <div class="section">
+        <h2>Step 4: Payment Validation</h2>
+        <p>Upon successful payment, the user will be redirected back to your client URL with the following parameters:</p>
+        <ul>
+            <li><strong>paymentId</strong>: The unique payment ID</li>
+            <li><strong>orderId</strong>: The unique order ID</li>
+            <li><strong>hash</strong>: The validation hash</li>
+        </ul>
+        <p>To validate the payment, generate a validation hash using the following algorithm:</p>
+        <p><code>validationHash = SHA256(paymentId+"-"+orderid + "-" + responseSecret)</code></p>
+        <p>Compare <code>validationHash</code> with the <code>hash</code> received in the redirect parameters. If they match, the payment is valid.</p>
+        <h4>example: </h4>
+        <p>https://client.com/order/success?paymentId=5862d2b0-7f9f-4b80-9bce-abed0ce14d06&orderId=2a8e26e7-1087-455e-a9c6-9590a2bbcf74&hash=01698ee996638a95e0711d788d7b65bc90d478aa982ba49090fc6f9752e1529d</p>
+        <p>validationHash = SHA256(5862d2b0-7f9f-4b80-9bce-abed0ce14d06-2a8e26e7-1087-455e-a9c6-9590a2bbcf74-secret)</p>
+        <p>validate if <code>validationHash = hash</code></p>
+
+        <h4>Additional Data (  Do not Use For Validation kid :/  )</h4>
+        <p>Use Api request to get pay data with payment id</p>
+        <p>Use Cookies for Auth if you do not have from login to blu pay</p>
+        <p>request to: https://blupay.uctf.ir/api/payment?paymentId=ad639119-f0e0-4b18-a2a3-18e94a7e9ee4</p>
+        <p>response: {
+            "id": 1,
+            "payed": true,
+            "paymentId": "0e992643-83ae-44d1-92f2-4e485eecb547",
+            "payAt": "2024-08-11T20:32:32.651865Z"
+            }</p>
+        <p>Note: Price filed and ClientId filed not developed yet for api</p>
+    </div>
+</div>
+</body>
+</html>

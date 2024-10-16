@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: adb-android-emulator
+  name: adb-android-emulator
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  selector:
+    matchLabels:
+      app: adb-android-emulator
+  template:
+    metadata:
+      labels:
+        app: adb-android-emulator
+    spec:
+      containers:
+        - env:
+            - name: EMULATOR_DEVICE
+              value: Nexus One
+            - name: WEB_VNC
+              value: "true"
+          image: budtmo/docker-android:emulator_10.0
+          name: android-container
+          ports:
+            - containerPort: 6080
+              protocol: TCP
+            - containerPort: 5554
+              protocol: TCP
+            - containerPort: 5555
+              protocol: TCP
+          resources:
+            limits:
+              cpu: "4"
+              ephemeral-storage: 512Mi
+              memory: 8G
+            requests:
+              cpu: "3"
+              ephemeral-storage: 512Mi
+              memory: 6G
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: adb-android-emulator
+  name: adb-android-emulator
+spec:
+  ports:
+    - name: "6080"
+      port: 6080
+      targetPort: 6080
+    - name: "5554"
+      port: 5554
+      targetPort: 5554
+    - name: "5555"
+      port: 5555
+      targetPort: 5555
+  selector:
+    app: adb-android-emulator
+

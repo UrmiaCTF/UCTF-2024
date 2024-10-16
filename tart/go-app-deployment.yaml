@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: adb-go-app
+  name: adb-go-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: adb-go-app
+  template:
+    metadata:
+      labels:
+        app: adb-go-app
+    spec:
+      containers:
+        - name: adb-go-app
+          image: registry-db68de2808-uuctf.apps.ir-thr-ba1.arvancaas.ir/sajjad/adb:0.1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8888
+              protocol: TCP
+          resources:
+            limits:
+              cpu: "250m"
+              ephemeral-storage: 128Mi
+              memory: 500Mi
+            requests:
+              cpu: "250m"
+              ephemeral-storage: 128Mi
+              memory: 500Mi
+      imagePullSecrets:
+        - name: regcred
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: adb-go-app
+  name: adb-go-app
+spec:
+  ports:
+    - name: "80"
+      port: 80
+      targetPort: 8888
+  selector:
+    app: adb-go-app

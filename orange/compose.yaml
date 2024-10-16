@@ -1,0 +1,5 @@
+services:
+  orange:
+    build: .
+    ports:
+      - "5001:5001"

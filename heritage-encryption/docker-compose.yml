@@ -1,0 +1,6 @@
+services:
+  heritage:
+    build: .
+    ports:
+      - "1001:1001"
+    restart: unless-stopped

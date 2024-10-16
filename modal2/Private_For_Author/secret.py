@@ -1,0 +1,1 @@
+flag = 'uctf{Sh1ny_pAsArg4d43}'

@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: orange
+  name: orange
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: orange
+  template:
+    metadata:
+      labels:
+        app: orange
+    spec:
+      containers:
+        - name: orange
+          image: registry-db68de2808-uuctf.apps.ir-thr-ba1.arvancaas.ir/jahangirzad/orange:0.1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5001
+              protocol: TCP
+          resources:
+            limits:
+              cpu: "250m"
+              ephemeral-storage: 128Mi
+              memory: 500Mi
+            requests:
+              cpu: "250m"
+              ephemeral-storage: 128Mi
+              memory: 500Mi
+      imagePullSecrets:
+        - name: regcred
+      restartPolicy: Always

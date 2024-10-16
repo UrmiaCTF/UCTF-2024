@@ -1,0 +1,37 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: PaymentQuestion
+  datasource:
+    url: jdbc:h2:file:./data/database
+    username: sa
+    password: admin-alireza-aljani07
+    driverClassName: org.h2.Driver
+  jpa:
+    hibernate.ddl-auto: update
+    generate-ddl: true
+    defer-datasource-initialization: true
+    show-sql: false
+  h2:
+    console:
+      enabled: false
+      path: /h2-console
+
+ctfd:
+  url: https://ctfd.uctf.ir
+  flag: uctf{YeralmaKababiIsTheBestProduct}
+
+
+application:
+  pay:
+    request-secret: 16d76e60e895d51a74acb3bfceaec4295650a7c3238c199b6a123a465d6ba4a0
+    response-secret: feaac27e2d26941f03ecf174a9a791a358792a27ae632197971ffe9692c0e9c6
+  flag-seller-id: zu0ook3keiwep0Oothor0ipieCh6hee5
+  flag-seller-url: http://flag-seller.uctf.ir:8080/order/success
+  blupay-url: http://blupay.uctf.ir:8080/pay
+
+logging:
+  level:
+    ir.alirezaalijani.ctf.payment: debug
+

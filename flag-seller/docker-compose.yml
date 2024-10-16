@@ -1,0 +1,20 @@
+version: '3.3'
+services:
+  flag-seller-app:
+    container_name: flag-seller
+    image: flag-seller:dev
+    restart: unless-stopped
+    environment:
+      - _JAVA_OPTIONS=-Xmx512m -Xms256m
+      # datasource
+      - spring.profiles.active=default
+      - spring.datasource.url=jdbc:h2:file:./data/database
+      - ctfd.url=https://ctfd.uctf.ir
+      - ctfd.flag=uctf{YeralmaKababiIsTheBestProduct}
+      - application.flag-seller-url=http://flag-seller.uctf.ir/order/success
+      - application.blupay-url=http://blupay.uctf.ir/pay
+      - logging.level.ir.alirezaalijani.ctf.payment=info
+    ports:
+      - '80:8080'
+    volumes:
+      - ./data:/app/data

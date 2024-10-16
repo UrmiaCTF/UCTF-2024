@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: simple-xss
+  name: simple-xss
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: simple-xss
+  template:
+    metadata:
+      labels:
+        app: simple-xss
+    spec:
+      containers:
+        - name: simple-xss
+          image: registry-db68de2808-uuctf.apps.ir-thr-ba1.arvancaas.ir/sajjada/simple-xss:0.1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          resources:
+            limits:
+              cpu: "125m"
+              ephemeral-storage: 64Mi
+              memory: 250Mi
+            requests:
+              cpu: "125m"
+              ephemeral-storage: 64Mi
+              memory: 250Mi
+      imagePullSecrets:
+        - name: regcred
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: simple-xss
+  name: simple-xss
+spec:
+  ports:
+    - name: "80"
+      port: 80
+      targetPort: 8080
+  selector:
+    app: simple-xss
+
+

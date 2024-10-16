@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: the-prophecy
+  name: the-prophecy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: the-prophecy
+  template:
+    metadata:
+      labels:
+        app: the-prophecy
+    spec:
+      containers:
+        - image: registry-db68de2808-uuctf.apps.ir-thr-ba1.arvancaas.ir/mokhtari/prophecy:0.1
+          name: the-prophecy
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          resources:
+            limits:
+              cpu: "250m"
+              ephemeral-storage: 128Mi
+              memory: 500Mi
+            requests:
+              cpu: "250m"
+              ephemeral-storage: 128Mi
+              memory: 500Mi
+      imagePullSecrets:
+        - name: regcred
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: the-prophecy
+  name: the-prophecy
+spec:
+  ports:
+    - name: "80"
+      port: 80
+      targetPort: 80
+  selector:
+    app: the-prophecy

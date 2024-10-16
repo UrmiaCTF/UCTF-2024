@@ -1,0 +1,3 @@
+/mnt/c/Users/Reo/clone/reverse_challenges/build/CMakeFiles/REVNG.dir
+/mnt/c/Users/Reo/clone/reverse_challenges/build/CMakeFiles/edit_cache.dir
+/mnt/c/Users/Reo/clone/reverse_challenges/build/CMakeFiles/rebuild_cache.dir

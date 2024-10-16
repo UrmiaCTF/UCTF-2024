@@ -1,0 +1,1 @@
+flag = "uctf{TuRn_4r0unD_On_r3gu14r_0rd3r_l1k3_TABRIZ_S4at_7oWeR_cl0cK}"

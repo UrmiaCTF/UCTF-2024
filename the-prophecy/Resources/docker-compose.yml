@@ -1,0 +1,4 @@
+services:
+  api:
+    restart: always
+    build: .

@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: heritage
+  name: heritage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: heritage
+  template:
+    metadata:
+      labels:
+        app: heritage
+    spec:
+      containers:
+        - name: heritage
+          image: registry-db68de2808-uuctf.apps.ir-thr-ba1.arvancaas.ir/mobin/heritage:1.0.0
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 1001
+              protocol: TCP
+          resources:
+            limits:
+              cpu: "200m"
+              ephemeral-storage: 128Mi
+              memory: 400Mi
+            requests:
+              cpu: "200m"
+              ephemeral-storage: 128Mi
+              memory: 400Mi
+      imagePullSecrets:
+        - name: regcred
+
+      restartPolicy: Always

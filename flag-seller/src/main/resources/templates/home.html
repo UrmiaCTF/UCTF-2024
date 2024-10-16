@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5" lang="EN">
+<head>
+    <title>Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1086px;
+            margin: 0 auto;
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            margin-top: 0;
+            text-align: center;
+            color: #333;
+        }
+
+        .user-info {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .user-info h3 {
+            margin: 0;
+            color: #333;
+        }
+
+        .user-info p {
+            margin: 0;
+            color: #666;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #297bbe;
+        }
+
+        .btn-primary {
+            background-color: #4197c4;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Welcome to the Flag Seller Page</h2>
+    <div class="user-info">
+        <h3>User Information</h3>
+        <p th:text="'Team ID: ' + ${#authentication.name}"></p>
+        <p th:text="'Roles: ' + ${#authentication.authorities}"></p>
+    </div>
+
+    <div>
+        <h3 style="text-align: center; color: #333;">Featured Product(Black Market)</h3>
+        <div class="product-container" style="display: flex; justify-content: center; align-items: center;">
+            <div class="product-card" style="background-color: #fff; border-radius: 10px; box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1); padding: 20px; margin: 10px;">
+                <img src="../static/css/images-old.jpg" th:src="@{/css/images.jpg}" alt="Product Image" style="width: 100%; max-width: 250px; border-radius: 10px; margin-bottom: 15px;">
+                <div class="product-info">
+                    <h4 style="margin-bottom: 10px; color: #333;">UCTF FLAG</h4>
+                    <p style="margin-bottom: 10px; color: #666;">To FInd FlaG YoU NeEd tO bY it :)</p>
+                    <p style="margin-bottom: 10px; color: #333;">Price: 5,000,000 USD</p>
+                    <a class="btn-buy" style="padding: 10px 20px; background-color: #4CAF50; color: #fff; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease;"
+                        href="order" target="_blank"
+                    >Buy Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <br>
+    <br>
+    <br>
+    <hr>
+    <div style="width: 500px; height: 265px; background-color: #5d9ff5; border-radius: 10px; box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1); padding: 20px;">
+        <div style="font-size: 24px; color: #333; margin-bottom: 25px;">Your Team Credit Card Information</div>
+        <div style="background-color: #fbdc7e; padding: 20px; border-radius: 10px;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                <div>
+                    <span style="font-size: 18px;">Card Number:</span><br>
+                    <span style="font-size: 33px; color: #333;" th:text="${credit.cardNumber}">1234 1234 1234 1234</span>
+                </div>
+                <div>
+                    <span style="font-size: 18px;">Expiry Date:</span><br>
+                    <span style="font-size: 20px; color: #333;" th:text="${credit.expireDate}">12/24</span>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+                <div>
+                    <span style="font-size: 18px;">Card Password:</span><br>
+                    <span style="font-size: 20px; color: #333;" th:text="${credit.password}">123213213</span>
+                </div>
+                <div>
+                    <span style="font-size: 18px;">CVV:</span><br>
+                    <span style="font-size: 20px; color: #333;" th:text="${credit.cvv2}">***</span>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div style="font-size: 24px; color: #333; margin-bottom: 20px;background-color: black;height: 51px; border-radius: 4px;"></div>
+    </div>
+
+    <div style="margin-top: 10px;">
+        Card amount is <i th:text="${credit.balance}"></i> USD
+    </div>
+
+    <br>
+    <hr>
+    <div>
+        <h4>Last Orders:</h4>
+        <ul>
+            <li th:each="order: ${orders}">
+                <div>
+                    <span>ID: <span th:text="${order.getId()}"></span> ,</span>
+                    <span>Is Payed: <span th:text="${order.isPayed()}"></span> , </span>
+                    <span>Ordered Date: <span th:text="${order.getDateString(order.getOrderedAt())}"></span> , </span>
+                    <span th:if="${order.isPayed()}">Payed Date: <span th:text="${order.getDateString(order.getPayAt())}"></span> , </span>
+                    <span th:if="${order.isPayed()}">Payment ID: <span th:text="${order.getPaymentId()}"></span> , </span>
+                    <span th:if="${!order.isPayed()}">
+                        <a href="#" target="_blank" th:href="${order.getPaymentUrl()}">Pay Now</a>
+                    </span>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <br>
+    <br>
+    <p>If you could not to buy flag just give up kid.</p>
+    <a href="/logout" class="btn btn-primary">Logout</a>
+</div>
+</body>
+</html>

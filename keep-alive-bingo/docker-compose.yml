@@ -1,0 +1,6 @@
+services:
+  keep-alive:
+    build: .
+    ports:
+      - "8080:8888"
+    restart: unless-stopped

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Form</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e0f7fa;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            width: 630px;
+            text-align: center;
+        }
+
+        .logo {
+            display: block;
+            margin: 0 auto 20px;
+            width: 80px;
+            height: auto;
+        }
+
+        h2 {
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+            color: #007bff;
+            text-align: left;
+        }
+
+        input[type="number"],
+        input[type="text"],
+        input[type="password"] {
+            width: calc(100% - 12px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        input[type="password"]:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        .card-number {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .card-number input {
+            width: 22%;
+            text-align: center;
+        }
+
+        .expiry-date {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .expiry-date input {
+            width: 48%;
+            text-align: center;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <img src="../static/css/blu-pay.png" th:src="@{/css/blu-pay.png}" alt="Company Logo" class="logo">
+    <h2>Blu Payment</h2>
+    <a href="/pay/docs" target="_blank">How We Work</a>
+    <form action="/payment" method="post" th:method="POST" th:object="${payment}">
+        <label for="amount">Amount: <span style="color: #161d28" th:text="${payment.amount+' $'}">50000 $</span> </label>
+        <input type="hidden" id="amount" th:field="*{amount}" required>
+        <label for="order">Order ID: <span style="color: #161d28" th:text="${payment.orderId}">324432</span></label>
+        <input type="hidden" id="order" th:field="*{orderId}" name="order" required>
+        <input type="hidden" id="clientId" th:field="*{client}" name="client" required>
+
+        <hr>
+        <br>
+        <label for="cardNoPart1">Card Number</label>
+        <div class="card-number">
+            <input type="text" id="cardNoPart1" name="cardNoPart1" th:field="*{cardNoPart1}" maxlength="4" required oninput="moveToNext(this, 'cardNoPart2')">
+            <input type="text" id="cardNoPart2" name="cardNoPart2" th:field="*{cardNoPart2}" maxlength="4" required oninput="moveToNext(this, 'cardNoPart3')">
+            <input type="text" id="cardNoPart3" name="cardNoPart3" th:field="*{cardNoPart3}" maxlength="4" required oninput="moveToNext(this, 'cardNoPart4')">
+            <input type="text" id="cardNoPart4" name="cardNoPart4" th:field="*{cardNoPart4}" maxlength="4" required>
+        </div>
+
+        <label for="cvv2">CVV</label>
+        <input type="text" id="cvv2" name="Cvv2" th:field="*{cvv2}" maxlength="3" required>
+
+        <label for="expiry">Expiry Date</label>
+        <div class="expiry-date" id="expiry">
+            <input type="text" id="month" name="month" th:field="*{month}" maxlength="2" placeholder="MM" required>
+            <input type="text" id="year" name="year" th:field="*{year}" maxlength="2" placeholder="YY" required>
+        </div>
+
+        <label for="pin">PIN</label>
+        <input type="password" id="pin" th:field="*{pin}" name="pin" required>
+
+
+        <input type="hidden" id="hash" th:value="${hash}" th:field="*{hash}" name="hash" required>
+
+        <button type="submit">Submit Payment</button>
+    </form>
+</div>
+<script>
+    function moveToNext(current, nextFieldID) {
+        if (current.value.length === current.maxLength) {
+            document.getElementById(nextFieldID).focus();
+        }
+    }
+</script>
+</body>
+</html>

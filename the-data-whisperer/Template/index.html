@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html data-bs-theme="light">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Attractions of Iran</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css">
+    <link rel="stylesheet" href="assets/css/styles.min.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg fixed-top portfolio-navbar gradient navbar-dark" data-bs-theme="dark">
+        <div class="container"><a class="navbar-brand logo" href="#">Attractions of Iran</a></div>
+    </nav>
+    <main class="page">
+        <section class="portfolio-block">
+            <div class="container">
+                <div class="heading">
+                    <h2>Which one of the attractions have you seen?</h2>
+                </div>
+                <div id="attractions-container" class="row">
+                    <!-- Dynamic content will be loaded here -->
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="page-footer py-3 border-top">
+        <div class="container my-4">
+            <div class="social-icons"><a class="me-3" href="https://uctf.ir/"><i class="icon ion-home"></i></a>
+                <a class="me-3" href="https://twitter.com/UrmiaCTF"><i class="icon ion-social-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Function to fetch attractions list and update the UI
+        async function fetchAttractions() {
+            try {
+                const response = await fetch('/attractions', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ order: 'count DESC' }) // You can change the order field here
+                });
+                const attractions = await response.json();
+
+                const container = document.getElementById('attractions-container');
+                container.innerHTML = ''; // Clear the previous contents
+
+                attractions.forEach(attraction => {
+                    const card = `
+                        <div class="col-md-6 col-lg-4" style="margin-top: 20px;">
+                            <div class="card">
+                                <img class="card-img-top w-100 d-block" src="assets/img/${attraction.image_name}" style="height: 275px;">
+                                <div class="card-body">
+                                    <h4 class="card-title">${attraction.name}</h4>
+                                    <p class="card-text" style="height: 100px;">${attraction.description}</p>
+                                    <button class="btn btn-primary" onclick="vote(${attraction.id})">
+                                        ${attraction.count} &nbsp;&nbsp;<i class="icon-like" style="font-size: 17px;"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>`;
+                    container.innerHTML += card;
+                });
+            } catch (error) {
+                console.error('Error fetching attractions:', error);
+            }
+        }
+
+        // Function to send a vote for a specific attraction
+        async function vote(id) {
+            try {
+                const response = await fetch('/vote', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ id: id })
+                });
+
+                const result = await response.json();
+                if (result.message) {
+                    // alert(result.message);
+                } else if (result.error) {
+                    alert(result.error);
+                }
+
+                // Re-fetch the attractions list to update vote counts
+                fetchAttractions();
+            } catch (error) {
+                console.error('Error sending vote:', error);
+            }
+        }
+
+        // Fetch attractions every 5 seconds and when the page loads
+        setInterval(fetchAttractions, 5000);
+        window.onload = fetchAttractions;
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,9 @@
+services:
+  lucky_guess:
+    build: .
+    ports:
+      - "10501:5000"
+    environment:
+      - WEB3_PROVIDER_URI=https://rpc2.sepolia.org/
+      - CONTRACT_ADDRESS=0xb62d3f4abF158d6042c58647294dDC037B3d8809
+      - FLAG=UCTF{N0tH1ng_i5_R4ndom_1n_BLockCh41n}

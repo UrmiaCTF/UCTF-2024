@@ -1,0 +1,2 @@
+listenPort: 8888
+adbAddress: localhost:5555

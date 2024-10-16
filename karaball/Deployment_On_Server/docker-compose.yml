@@ -1,0 +1,8 @@
+version: '3.8'
+
+services:
+  karaball:
+    build: .
+    ports:
+      - "15623:15623"
+    restart: always

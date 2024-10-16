@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: lucky-guess
+  name: lucky-guess
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lucky-guess
+  template:
+    metadata:
+      labels:
+        app: lucky-guess
+    spec:
+      containers:
+        - env:
+            - name: CONTRACT_ADDRESS
+              value: 0xb62d3f4abF158d6042c58647294dDC037B3d8809
+            - name: FLAG
+              value: UCTF{N0tH1ng_i5_R4ndom_1n_BLockCh41n}
+            - name: WEB3_PROVIDER_URI
+              value: https://rpc2.sepolia.org/
+          image: registry-db68de2808-uuctf.apps.ir-thr-ba1.arvancaas.ir/amini/lucky-guess:1.0.0
+          imagePullPolicy: Always
+          name: lucky-guess
+          ports:
+            - containerPort: 5000
+              protocol: TCP
+          resources:
+            limits:
+              cpu: "250m"
+              ephemeral-storage: 128Mi
+              memory: 500Mi
+            requests:
+              cpu: "250m"
+              ephemeral-storage: 128Mi
+              memory: 500Mi
+      imagePullSecrets:
+        - name: regcred
+
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: lucky-guess
+  name: lucky-guess
+spec:
+  ports:
+    - name: "80"
+      port: 80
+      targetPort: 5000
+  selector:
+    app: lucky-guess
+

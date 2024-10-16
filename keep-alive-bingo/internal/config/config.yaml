@@ -1,0 +1,4 @@
+debug: false
+port: 8888
+flag: UCTF{P1nk_Lak3_Maharl00}
+duration: 500

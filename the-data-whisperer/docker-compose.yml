@@ -1,0 +1,6 @@
+services:
+  blind-sqli:
+    build: .
+    ports:
+      - "80:5000"
+    restart: unless-stopped

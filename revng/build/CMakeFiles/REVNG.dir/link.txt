@@ -1,0 +1,1 @@
+/usr/bin/c++ -s CMakeFiles/REVNG.dir/src/prng.cpp.o CMakeFiles/REVNG.dir/src/main.cpp.o -o REVNG 

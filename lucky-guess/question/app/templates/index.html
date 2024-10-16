@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UCTF Blockchain Challenge</title>
+</head>
+<body>
+    <h1>UCTF Blockchain Challenge</h1>
+    <p>Click the button below to connect your MetaMask wallet and check if you have solved the challenge to get the flag:</p>
+    
+    <button id="connectButton">Connect MetaMask</button>
+    <p id="accountAddress"></p>
+
+    <form id="flagForm" style="display:none;">
+        <button type="submit">Get Flag</button>
+    </form>
+
+    <p id="response"></p>
+
+    <h2>Contract Details</h2>
+    <p><strong>RPC URL:</strong> https://rpc2.sepolia.org/</p>
+    <p><strong>Blockchain:</strong>Sepolia testnet</p>
+    <p><strong>Contract Address:</strong> 0xb62d3f4abF158d6042c58647294dDC037B3d8809</p>
+    <p><strong>Faucets: <a href="https://faucets.chain.link/sepolia">https://faucets.chain.link/sepolia</a> <a>-----</a> <a href="https://cloud.google.com/application/web3/faucet/ethereum/sepolia">https://cloud.google.com/application/web3/faucet/ethereum/sepolia</a> </strong></p>
+
+    <h2>Contract Source Code</h2>
+    <pre>
+// SPDX-License-Identifier: UNLICENSED
+pragma solidity ^0.8.0;
+
+contract LuckyGuess {
+    mapping(address => bool) public winCount;
+    uint256 public MULTIPLIER = 117067084070050048050052066108111099107099104097105110;
+    
+    function guess(uint256 _prediction) public returns (bool) {
+        uint256 blockHash = uint256(blockhash(block.number - 1)); 
+        uint256 randomValue = blockHash / MULTIPLIER; // very random number
+
+        if (randomValue == _prediction) {
+            winCount[tx.origin] = true; // make it true to solve challenge
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function isSolved(address user) public view returns (bool) {
+        return winCount[user];
+    }
+}
+</pre>
+<h2>Contract ABI</h2>
+<pre>
+    contract_abi = [
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"inputs": [],
+		"name": "MULTIPLIER",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_prediction",
+				"type": "uint256"
+			}
+		],
+		"name": "guess",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "user",
+				"type": "address"
+			}
+		],
+		"name": "isSolved",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "winCount",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+]
+
+</pre>
+
+
+    <script>
+        let userAccount;
+
+        async function connectMetaMask() {
+            if (window.ethereum) {
+                try {
+                    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                    userAccount = accounts[0];
+                    // document.getElementById('accountAddress').textContent = `Connected account: ${userAccount}`;
+                    document.getElementById('accountAddress').textContent = `Success`;
+                    document.getElementById('flagForm').style.display = 'block';
+                } catch (error) {
+                    console.error("User denied account access or there was an error connecting.");
+                }
+            } else {
+                console.log('MetaMask is not installed!');
+                alert('MetaMask is not installed! Please install it to use this feature.');
+            }
+        }
+
+        document.getElementById('connectButton').addEventListener('click', connectMetaMask);
+
+        document.getElementById('flagForm').onsubmit = async function(event) {
+            event.preventDefault();
+
+            const response = await fetch('/get_flag', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `address=${userAccount}`
+            });
+            const result = await response.json();
+            document.getElementById('response').textContent = result.flag || result.error;
+        }
+    </script>
+</body>
+</html>

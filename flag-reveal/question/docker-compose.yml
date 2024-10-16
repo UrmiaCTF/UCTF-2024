@@ -1,0 +1,6 @@
+services:
+  flag_reveal:
+    build: .
+    ports:
+      - "10500:8545"
+

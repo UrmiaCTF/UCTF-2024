@@ -1,0 +1,53 @@
+config broker:
+		
+		sudo apt-get update
+		sudo apt-get upgrade
+
+	1 - Install Net Tools 
+		sudo apt install net-tools
+
+	2 - Install MQTT Broker
+		sudo apt-get install mosquitto
+
+	3 - Install MQTT Client
+		sudo apt-get install mosquitto-clients
+
+	4 - sudo nano /etc/mosquitto/mosquitto.conf
+
+		add these two line to file: 
+			listener 1883
+			allow_anonymous true
+
+	5 - sudo systemctl restart mosquitto
+
+
+	6 - Add these two files:
+	
+		install python3
+
+		reply_topic_one.py
+		reply_flag_topic.py
+
+		then run both them at the same time
+	
+		python3 reply_topic_one.py & python3 reply_flag_topic.py
+
+
+		*!!*
+		these two python files need to server Ip address or Domain-name, you should change them. 
+	
+		*!!*
+		if you need:
+		pip install paho-mqtt
+
+
+------------------------------
+
+Create exe or some binary executable format for this file:
+	
+	publisher.py
+	
+	*!!*
+	this python file needs to server Ip address or Domain-name, you should change it.
+
+------------------------------

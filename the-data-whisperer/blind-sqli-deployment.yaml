@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: blind-sqli
+  name: blind-sqli
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: blind-sqli
+  template:
+    metadata:
+      labels:
+        app: blind-sqli
+    spec:
+      containers:
+        - name: blind-sqli
+          image: registry-db68de2808-uuctf.apps.ir-thr-ba1.arvancaas.ir/sajjad/blind-sqli:0.1
+          ports:
+            - containerPort: 5000
+              protocol: TCP
+          resources:
+            limits:
+              cpu: "250m"
+              ephemeral-storage: 128Mi
+              memory: 500Mi
+            requests:
+              cpu: "250m"
+              ephemeral-storage: 128Mi
+              memory: 500Mi
+      imagePullSecrets:
+        - name: regcred
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: blind-sqli
+  name: blind-sqli
+spec:
+  ports:
+    - name: "80"
+      port: 80
+      targetPort: 5000
+  selector:
+    app: blind-sqli

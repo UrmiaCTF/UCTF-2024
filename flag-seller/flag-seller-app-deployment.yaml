@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: flag-seller-app
+  name: flag-seller-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flag-seller-app
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: flag-seller-app
+    spec:
+      containers:
+        - env:
+            - name: _JAVA_OPTIONS
+              value: -Xmx512m -Xms256m
+            - name: application.blupay-url
+              value: http://blupay.uctf.ir/pay
+            - name: application.flag-seller-url
+              value: http://flag-seller.uctf.ir/order/success
+            - name: ctfd.flag
+              value: uctf{YeralmaKababiIsTheBestProduct}
+            - name: ctfd.url
+              value: https://ctfd.uctf.ir
+            - name: logging.level.ir.alirezaalijani.ctf.payment
+              value: info
+            - name: spring.datasource.url
+              value: jdbc:h2:file:./data/database
+            - name: spring.profiles.active
+              value: default
+          image: registry-db68de2808-uuctf.apps.ir-thr-ba1.arvancaas.ir/alijani/flag-seller:dev
+          imagePullPolicy: Always
+          name: flag-seller
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /app/data
+              name: flag-seller-app-claim0
+          resources:
+            limits:
+              cpu: "500m"
+              ephemeral-storage: 1G
+              memory: 1000Mi
+            requests:
+              cpu: "250m"
+              ephemeral-storage: 1G
+              memory: 500Mi
+      imagePullSecrets:
+        - name: regcred
+      restartPolicy: Always
+      volumes:
+        - name: flag-seller-app-claim0
+          persistentVolumeClaim:
+            claimName: flag-seller-app-claim0
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: flag-seller-app
+  name: flag-seller-app
+spec:
+  ports:
+    - name: "80"
+      port: 80
+      targetPort: 8080
+  selector:
+    app: flag-seller-app

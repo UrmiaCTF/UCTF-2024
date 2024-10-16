@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  android-emulator:
+    image: budtmo/docker-android:emulator_10.0
+    container_name: android-container
+    ports:
+      - "6080:6080"
+      - "5554:5554"
+      - "5555:5555"
+    environment:
+      - EMULATOR_DEVICE=Nexus One
+      - WEB_VNC=true
+    devices:
+      - "/dev/kvm:/dev/kvm"
+    restart: unless-stopped
+
+  go-app:
+    build: .
+    ports:
+      - "8888:8888"
+    depends_on:
+      - android-emulator
