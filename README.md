@@ -1,7 +1,7 @@
 # 🚀 UCTF 2024 Challenges Repository 🏆
 
 <p align="center">
-  <img src="./UCTF.jpg" alt="UCTF Logo">
+    <img src="./UCTF.jpg" alt="UCTF Logo" width="400">
 </p>
 
 Welcome to the UCTF 2024 Challenges Repository! This repository contains all the challenges, scores, and write-ups for the UCTF 2024 competition.
