@@ -32,7 +32,7 @@ View the final scoreboard and rankings for UCTF 2024 on [CTFTime](https://ctftim
 | Paho Puzzle            | Network            | 250             | [Write-up](./paho-puzzle/README.md)            | [Hamidreza Babaei](https://github.com/HamidRezaBabaeii) |
 | The Data Whisperer     | Web                | 250             | [Write-up](./the-data-whisperer/README.md)     | [Sajjad Manafi](https://github.com/SajjadManafi)        |
 | REVNG                  | Reverse            | 400             | [Write-up](./revng/README.md)                  | [Amir Mohammad Jahangirzad](https://github.com/reodus)  |
-| Karaball               | Cryptography       | 500             | [Write-up](./karaball/README.md)               | [Kourosh](https://github.com/YoungMind1)                |
+| Karaball               | Cryptography       | 500             | [Write-up](./karaball/README.md)               | Anonymous                |
 | ASCII Art Studio       | Web                | 400             | [Write-up](./ascii-art-studio/README.md)       | [TBD](TBD)                                              |
 | Strange Vacuum Cleaner | Data Science       | 150             | [Write-up](./strange-vacuum-cleaner/README.md) | [Hanif Ganji](https://github.com/HanifGanji)            |
 | Orange                 | PWN                | 350             | [Write-up](./orange/README.md)                 | [Amir Mohammad Jahangirzad](https://github.com/reodus)  |
@@ -43,11 +43,11 @@ View the final scoreboard and rankings for UCTF 2024 on [CTFTime](https://ctftim
 | Catch Me If You Can!   | Forensics          | 350             | [Write-up](./catch-me-if-you-can/README.md)    | [Ali Babaei](https://github.com/alibabaei4)             |
 | Execution              | Reverse            | 300             | [Write-up](./execution/README.md)              | [Amir Mohammad Jahangirzad](https://github.com/reodus)  |
 | Lost Voyage            | Forensics          | 150             | [Write-up](./lost-voyage/README.md)            | [Sajjad Alibabaei](https://github.com/sajad-alibabaie)  |
-| Rasa                   | Cryptography       | 400             | [Write-up](./rasa/README.md)                   | [Kourosh](TBD)                                          |
+| Rasa                   | Cryptography       | 400             | [Write-up](./rasa/README.md)                   | Anonymous                                               |
 | Simple                 | Web                | 150             | [Write-up](./simple/README.md)                 | [Sajjad Alibabaei](https://github.com/sajad-alibabaie)  |
 | Sergio                 | Cryptography       | 250             | [Write-up](./sergio/README.md)                 | [Ali Babaei](https://github.com/alibabaei4)             |
-| Modal 2                | Cryptography       | 200             | [Write-up](./modal2/README.md)                 | [Kourosh](TBD)                                          |
-| Modal 1                | Cryptography       | 100             | [Write-up](./modal1/README.md)                 | [Kourosh](TBD)                                          |
+| Modal 2                | Cryptography       | 200             | [Write-up](./modal2/README.md)                 | Anonymous                                               |
+| Modal 1                | Cryptography       | 100             | [Write-up](./modal1/README.md)                 | Anonymous                                               |
 
 ## Contributing 🤝
 
