@@ -21,7 +21,7 @@ View the final scoreboard and rankings for UCTF 2024 on [CTFTime](https://ctftim
 | Challenge Title        | Challenge Category | Challenge Score | Official Description/Write-up Link             | Author                                                  |
 | ---------------------- | ------------------ | --------------- | ---------------------------------------------- | ------------------------------------------------------- |
 | Drag n Zip             | Reverse            | 300             | [Write-up](./drag-n-zip/README.md)             | [Mahdi Farrokhzadeh](https://github.com/IrHidden)       |
-| Flag Seller            | Web                | 300             | [Write-up](./flag-seller/README.MD)            | [Alireza Alijani](https://github.com/alirezaalj)        |
+| Flag Seller            | Web                | 300             | [Write-up](./flag-seller/README.md)            | [Alireza Alijani](https://github.com/alirezaalj)        |
 | VLAN Wars              | Forensics          | 350             | [Write-up](./vlan_wars/README.md)              | [Hamidreza Babaei](https://github.com/HamidRezaBabaeii) |
 | Travel Guide           | Reverse            | 350             | [Write-up](./travelguide/README.md)            | [Reza Sheykhlarmazari](https://github.com/rezash-10)    |
 | The Road of Redemption | Forensics          | 250             | [Write-up](./the-road-of-redemption/README.md) | [Sina Zokaei](https://github.com/sinazokaei)            |
