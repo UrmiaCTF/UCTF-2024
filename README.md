@@ -37,7 +37,7 @@ View the final scoreboard and rankings for UCTF 2024 on [CTFTime](https://ctftim
 | Strange Vacuum Cleaner | Data Science       | 150             | [Write-up](./strange-vacuum-cleaner/README.md) | [Hanif Ganji](https://github.com/HanifGanji)            |
 | Orange                 | PWN                | 350             | [Write-up](./orange/README.md)                 | [Amir Mohammad Jahangirzad](https://github.com/reodus)  |
 | Heritage Encryption    | OSINT              | 500             | [Write-up](./heritage-encryption/README.md)    | [Mobin Kheibary](https://github.com/Mobiwn/)            |
-| Tart                   | Reverse            | 000             | [Write-up](./tart/README.md)                   | [Sajjad Manafi](https://github.com/SajjadManafi)        |
+| Tart                   | Reverse            | 300             | [Write-up](./tart/README.md)                   | [Sajjad Manafi](https://github.com/SajjadManafi)        |
 | Look-up                | PWN                | 300             | [Write-up](./lookup/README.md)                 | [Amir Mohammad Jahangirzad](https://github.com/reodus)  |
 | Hidden Coordinates     | Forensics          | 150             | [Write-up](./hidden-coordinates/README.md)     | [Sajjad Alibabaei](https://github.com/sajad-alibabaie)  |
 | Catch Me If You Can!   | Forensics          | 350             | [Write-up](./catch-me-if-you-can/README.md)    | [Ali Babaei](https://github.com/alibabaei4)             |
