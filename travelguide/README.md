@@ -1,7 +1,11 @@
 # Travel Guide
 Embark on a digital journey to a hidden destination in Iran. Uncover the secrets within the app and find your way to the true path. Will you navigate the unknown, or remain lost forever?(Min android version : 9)
 
-# Write Up
+## Video Write Up
+
+[![Travel Guide Writeup](resources/thumbnail.png)](https://www.youtube.com/watch?v=E96iuy-JzgA)
+
+## Write Up
 When start application in the first page of application there is button which user need to click to go to next activity.
 
 <img src="src/WorldActivity.png" title="WorldActivity" alt="WorldActivity" data-align="center" width="200" height="400">
@@ -91,10 +95,6 @@ Remember in process of calculating flag , it uses apk signature, so if you decom
 You can get the main signature of apk by installing it in phone and retrieve the signature using another apk.
 
 <img src="src/Flag.png" title="Flag" alt="Flag" data-align="center" width="200" height="400">
-
-
-# Write Up Video
-[Video link](https://s32.picofile.com/file/8479140626/TravelGuideSolution.mkv.html)
 
 # Flag
 ```

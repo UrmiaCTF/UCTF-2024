@@ -1,7 +1,10 @@
 # Orange
 Dive into the juicy depths of this challenge and see if you can squeeze out a surprise.
 
-# Write Up
+## Video Write Up
+[![Orange Writeup](Resources/thumbnail.png)](https://www.youtube.com/watch?v=iocR-SAEQ7E)
+
+## Write Up
 
 Before diving into any pwn challenge, it's crucial to examine the security mitigations applied during the compilation of the executable. The checksec tool from the pwntools suite is perfect for this:
 

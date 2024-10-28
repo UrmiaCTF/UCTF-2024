@@ -6,8 +6,9 @@ The answer lies within the provided executable file. Are you ready to solve the 
 
 <img src="img/paho-puzzle1.png" title="Iran" alt="Iran" data-align="center">
 
-# Write Up / Video
-N.A.
+## Write Up Video
+
+[![Paho PUzzle Writeup](img/thumbnail.png)](https://www.youtube.com/watch?v=Bx596RxAbcU)
 
 # Flag
 

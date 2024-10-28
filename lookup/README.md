@@ -1,7 +1,11 @@
 # Look-up
 Unravel the hidden messages buried in the echoes of code.
 
-# Write Up
+## Video Write Up
+
+[![Look-Up Writeup](Resources/thumbnail.png)](https://www.youtube.com/watch?v=o00Fu5PSiaQ)
+
+## Write Up
 
 Before diving into any pwn challenge, it's crucial to examine the security mitigations applied during the compilation of the executable. The checksec tool from the pwntools suite is perfect for this:
 

@@ -4,8 +4,11 @@
 
 **Your task is to uncover these hidden masterpieces, for within them lies the key to unlocking the flag. Begin your journey here: https://ascci-art-studio.uctf.ir/. The truth is waiting to be discovered.**
 
+## Video Write Up
 
-# Write Up
+[![ASCII Art Studio Writeup](Resources/thumbnail.png)](https://www.youtube.com/watch?v=fg0e4C4-OxI)
+
+## Write Up
 
 If you view the source code of the `index.html` file, you'll see that everythig is handled in a javascript file called `bundle.js`.
 

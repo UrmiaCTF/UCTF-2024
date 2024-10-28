@@ -8,7 +8,11 @@ Just connect to User-switch then take me in Root-switch.
 
 <img src="img/VLAN_WAR2.jpg" title="Iran" alt="Iran" data-align="center">
 
-# Write Up
+## Video Write Up
+
+[![VLAN Wars Writeup](img/thumbnail.png)](https://www.youtube.com/watch?v=Szu1WKBV4tU)
+
+## Write Up
 
 As you see we have access to User-Switch, first we should connect to User-Switch via *Telnet*. open cmd...
 

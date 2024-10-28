@@ -3,8 +3,9 @@
 Numbers hide what words cannot reveal. Can you uncover the secret encoded within them? Investigate carefully; the answer lies deep within the sequence. 
 
 
-# Write Up
-N.A.
+## Write Up
+
+[![REVNG Writeup](Resources/thumbnail.png)](https://www.youtube.com/watch?v=tMgfVZqkAJk)
 
 # Flag
 

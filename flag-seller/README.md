@@ -4,9 +4,9 @@
 Step into the world of "Flag Seller," where the quest for flags begins! 🕵️‍♂️ Your mission is to visit [https://flag-seller.uctf.ir](https://flag-seller.uctf.ir) to uncover the hidden flags. To gain access, you'll need to generate an access token from the CTFd panel. For a guide on how to create your token, check out the [documentation](https://docs.ctfd.io/docs/api/getting-started/#access-token). Good luck, and may your search be fruitful! 🌟
 
 
-# Write Up / Video
+## Write Up Video
 
-N.A.
+[![Flag Seller Writeup](resources/thumbnail.png)](https://www.youtube.com/watch?v=NGJjtrRjuIY)
 
 # Flag
 
